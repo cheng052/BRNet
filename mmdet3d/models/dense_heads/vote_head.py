@@ -51,6 +51,7 @@ class VoteHead(nn.Module):
                  norm_cfg=dict(type='BN1d'),
                  objectness_loss=None,
                  center_loss=None,
+                 center_loss_mse=None,
                  dir_class_loss=None,
                  dir_res_loss=None,
                  size_class_loss=None,
@@ -65,7 +66,6 @@ class VoteHead(nn.Module):
         self.num_proposal = vote_aggregation_cfg['num_point']
 
         self.objectness_loss = build_loss(objectness_loss)
-        self.center_loss = build_loss(center_loss)
         self.dir_res_loss = build_loss(dir_res_loss)
         self.dir_class_loss = build_loss(dir_class_loss)
         self.size_res_loss = build_loss(size_res_loss)
@@ -77,6 +77,10 @@ class VoteHead(nn.Module):
             self.iou_loss = build_loss(iou_loss)
         else:
             self.iou_loss = None
+        if center_loss is not None:
+            self.center_loss = build_loss(center_loss)
+        if center_loss_mse is not None:
+            self.center_loss_mse = build_loss(center_loss_mse)
 
         self.bbox_coder = build_bbox_coder(bbox_coder)
         self.num_sizes = self.bbox_coder.num_sizes
@@ -154,6 +158,7 @@ class VoteHead(nn.Module):
             seed_points, seed_features)
         results = dict(
             seed_points=seed_points,
+            seed_features=seed_features,
             seed_indices=seed_indices,
             vote_points=vote_points,
             vote_features=vote_features,
@@ -264,11 +269,18 @@ class VoteHead(nn.Module):
             weight=objectness_weights)
 
         # calculate center loss
-        source2target_loss, target2source_loss = self.center_loss(
+        deprecated_source2target_loss, target2source_loss = self.center_loss(
             bbox_preds['center'],
             center_targets,
             src_weight=box_loss_weights,
             dst_weight=valid_gt_weights)
+        box_loss_weights_expand = box_loss_weights.unsqueeze(-1).repeat(
+            1, 1, 3)
+        source2target_loss = self.center_loss_mse(
+            bbox_preds['center'],
+            assigned_center_targets,
+            weight=box_loss_weights_expand
+        )
         center_loss = source2target_loss + target2source_loss
 
         # calculate direction class loss
