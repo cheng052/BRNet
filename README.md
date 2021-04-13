@@ -1,148 +1,120 @@
-<div align="center">
-  <img src="resources/mmdet3d-logo.png" width="600"/>
-</div>
+# BRNet
 
-[![docs](https://img.shields.io/badge/docs-latest-blue)](https://mmdetection3d.readthedocs.io/en/latest/)
-[![badge](https://github.com/open-mmlab/mmdetection3d/workflows/build/badge.svg)](https://github.com/open-mmlab/mmdetection3d/actions)
-[![codecov](https://codecov.io/gh/open-mmlab/mmdetection3d/branch/master/graph/badge.svg)](https://codecov.io/gh/open-mmlab/mmdetection3d)
-[![license](https://img.shields.io/github/license/open-mmlab/mmdetection3d.svg)](https://github.com/open-mmlab/mmdetection3d/blob/master/LICENSE)
-
-
-**News**: We released the codebase v0.11.0.
-
-In the recent [nuScenes 3D detection challenge](https://www.nuscenes.org/object-detection?externalData=all&mapData=all&modalities=Any) of the 5th AI Driving Olympics in NeurIPS 2020, we obtained the best PKL award and the second runner-up by multi-modality entry, and the best vision-only results. Code and models will be released soon!
-
-Documentation: https://mmdetection3d.readthedocs.io/
+![fig_overview-c2](D:\OneDrive\Study\Graduate-master\软件工程综合实践\fig_overview-c2.jpg)
 
 ## Introduction
 
-English | [简体中文](README_zh-CN.md)
+This is a release of the code of our paper ***Back-tracing Representative Points for Voting-based 3D Object Detection in Point Clouds***, CVPR 2021.
 
-The master branch works with **PyTorch 1.3+**.
+**Authors**: Bowen Cheng, Lu Sheng\*, Shaoshuai Shi, Ming Yang, Dong Xu (\*corresponding author)
 
-MMDetection3D is an open source object detection toolbox based on PyTorch, towards the next-generation platform for general 3D detection. It is
-a part of the OpenMMLab project developed by [MMLab](http://mmlab.ie.cuhk.edu.hk/).
+[[arxiv]]()
 
-![demo image](resources/mmdet3d_outdoor_demo.gif)
-
-### Major features
-
-- **Support multi-modality/single-modality detectors out of box**
-
-  It directly supports multi-modality/single-modality detectors including MVXNet, VoteNet, PointPillars, etc.
-
-- **Support indoor/outdoor 3D detection out of box**
-
-  It directly supports popular indoor and outdoor 3D detection datasets, including ScanNet, SUNRGB-D, Waymo, nuScenes, Lyft, and KITTI.
-  For nuScenes dataset, we also support [nuImages dataset](https://github.com/open-mmlab/mmdetection3d/tree/master/configs/nuimages).
-
-- **Natural integration with 2D detection**
-
-  All the about **300+ models, methods of 40+ papers**, and modules supported in [MMDetection](https://github.com/open-mmlab/mmdetection/blob/master/docs/model_zoo.md) can be trained or used in this codebase.
-
-- **High efficiency**
-
-  It trains faster than other codebases. The main results are as below. Details can be found in [benchmark.md](./docs/benchmarks.md). We compare the number of samples trained per second (the higher, the better). The models that are not supported by other codebases are marked by `×`.
-
-  | Methods | MMDetection3D | [OpenPCDet](https://github.com/open-mmlab/OpenPCDet) |[votenet](https://github.com/facebookresearch/votenet)| [Det3D](https://github.com/poodarchu/Det3D) |
-  |:-------:|:-------------:|:---------:|:-----:|:-----:|
-  | VoteNet | 358           | ×         |   77  | ×     |
-  | PointPillars-car| 141           | ×         |   ×  | 140     |
-  | PointPillars-3class| 107           |44     |   ×      | ×    |
-  | SECOND| 40           |30     |   ×      | ×    |
-  | Part-A2| 17           |14     |   ×      | ×    |
-
-Like [MMDetection](https://github.com/open-mmlab/mmdetection) and [MMCV](https://github.com/open-mmlab/mmcv), MMDetection3D can also be used as a library to support different projects on top of it.
-
-## License
-
-This project is released under the [Apache 2.0 license](LICENSE).
-
-## Changelog
-
-v0.11.0 was released in 1/3/2021.
-Please refer to [changelog.md](docs/changelog.md) for details and release history.
-
-## Benchmark and model zoo
-
-Supported methods and backbones are shown in the below table.
-Results and models are available in the [model zoo](docs/model_zoo.md).
-
-Support backbones:
-
-- [x] PointNet (CVPR'2017)
-- [x] PointNet++ (NeurIPS'2017)
-- [x] RegNet (CVPR'2020)
-
-Support methods
-
-- [x] [SECOND (Sensor'2018)](configs/second/README.md)
-- [x] [PointPillars (CVPR'2019)](configs/pointpillars/README.md)
-- [x] [FreeAnchor (NeurIPS'2019)](configs/free_anchor/README.md)
-- [x] [VoteNet (ICCV'2019)](configs/votenet/README.md)
-- [x] [H3DNet (ECCV'2020)](configs/h3dnet/README.md)
-- [x] [3DSSD (CVPR'2020)](configs/3dssd/README.md)
-- [x] [Part-A2 (TPAMI'2020)](configs/parta2/README.md)
-- [x] [MVXNet (ICRA'2019)](configs/mvxnet/README.md)
-- [x] [CenterPoint (CVPR'2021)](configs/centerpoint/README.md)
-- [x] [SSN (ECCV'2020)](configs/ssn/README.md)
-
-|                    | ResNet   | ResNeXt  | SENet    |PointNet++ | HRNet | RegNetX | Res2Net |
-|--------------------|:--------:|:--------:|:--------:|:---------:|:-----:|:--------:|:-----:|
-| SECOND             | ☐        | ☐        | ☐        | ✗         | ☐     | ✓        | ☐     |
-| PointPillars       | ☐        | ☐        | ☐        | ✗         | ☐     | ✓        | ☐     |
-| FreeAnchor         | ☐        | ☐        | ☐        | ✗         | ☐     | ✓        | ☐     |
-| VoteNet            | ✗        | ✗        | ✗        | ✓         | ✗     | ✗        | ✗     |
-| H3DNet            | ✗        | ✗        | ✗        | ✓         | ✗     | ✗        | ✗     |
-| 3DSSD            | ✗        | ✗        | ✗        | ✓         | ✗     | ✗        | ✗     |
-| Part-A2            | ☐        | ☐        | ☐        | ✗         | ☐     | ✓        | ☐     |
-| MVXNet             | ☐        | ☐        | ☐        | ✗         | ☐     | ✓        | ☐     |
-| CenterPoint        | ☐        | ☐        | ☐        | ✗         | ☐     | ✓        | ☐     |
-| SSN                | ☐        | ☐        | ☐        | ✗         | ☐     | ✓        | ☐     |
-
-Other features
-- [x] [Dynamic Voxelization](configs/dynamic_voxelization/README.md)
-
-**Note:** All the about **300+ models, methods of 40+ papers** in 2D detection supported by [MMDetection](https://github.com/open-mmlab/mmdetection/blob/master/docs/model_zoo.md) can be trained or used in this codebase.
-
-## Installation
-
-Please refer to [getting_started.md](docs/getting_started.md) for installation.
-
-## Get Started
-
-Please see [getting_started.md](docs/getting_started.md) for the basic usage of MMDetection3D. We provide guidance for quick run [with existing dataset](docs/1_exist_data_model.md) and [with customized dataset](docs/2_new_data_model.md) for beginners. There are also tutorials for [learning configuration systems](docs/tutorials/config.md), [adding new dataset](docs/tutorials/customize_dataset.md), [designing data pipeline](docs/tutorials/data_pipeline.md), [customizing models](docs/tutorials/customize_models.md), [customizing runtime settings](docs/tutorials/customize_runtime.md) and [Waymo dataset](docs/tutorials/waymo.md).
+In this repository, we reimplement BRNet based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) for easier usage.
 
 ## Citation
 
-If you find this project useful in your research, please consider cite:
+If you find our work useful in your research, please consider citing:
 
-```latex
-@misc{mmdet3d2020,
-    title={{MMDetection3D: OpenMMLab} next-generation platform for general 3D object detection},
-    author={MMDetection3D Contributors},
-    howpublished = {\url{https://github.com/open-mmlab/mmdetection3d}},
-    year={2020}
-}
+```
+@article{}
 ```
 
-## Contributing
+## Installation
 
-We appreciate all contributions to improve MMDetection3D. Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the contributing guideline.
+This repo is built based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) (V0.11.0), please follow the [getting_started.md](https://github.com/open-mmlab/mmdetection3d/blob/master/docs/getting_started.md) for installation.
 
-## Acknowledgement
+The code is tested under the following environment:
 
-MMDetection3D is an open source project that is contributed by researchers and engineers from various colleges and companies. We appreciate all the contributors as well as users who give valuable feedbacks.
-We wish that the toolbox and benchmark could serve the growing research community by providing a flexible toolkit to reimplement existing methods and develop their own new 3D detectors.
+- Ubuntu 16.04 LTS
+- Python 3.7.10
+- Pytorch 1.5.0
+- CUDA 10.1
+- GCC 7.3
 
-## Projects in OpenMMLab
+## Datasets
 
-- [MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab foundational library for computer vision.
-- [MMClassification](https://github.com/open-mmlab/mmclassification): OpenMMLab image classification toolbox and benchmark.
-- [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab detection toolbox and benchmark.
-- [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab next-generation platform for general 3D object detection.
-- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation): OpenMMLab semantic segmentation toolbox and benchmark.
-- [MMAction2](https://github.com/open-mmlab/mmaction2): OpenMMLab's next-generation action understanding toolbox and benchmark.
-- [MMTracking](https://github.com/open-mmlab/mmtracking): OpenMMLab video perception toolbox and benchmark.
-- [MMPose](https://github.com/open-mmlab/mmpose): OpenMMLab pose estimation toolbox and benchmark.
-- [MMEditing](https://github.com/open-mmlab/mmediting): OpenMMLab image and video editing toolbox.
+### ScanNet
+
+Please follow the instruction [here](https://github.com/open-mmlab/mmdetection3d/tree/master/data/scannet) to prepare ScanNet Data.
+
+### SUN RGB-D
+
+Please follow the instruction [here](https://github.com/open-mmlab/mmdetection3d/tree/master/data/sunrgbd) to prepare SUN RGB-D Data.
+
+## Download Trained Models
+
+We provide the trained models of ScanNet and SUN RGB-D with per-class performances.
+
+- ScanNet
+  - [GoogleDrive](https://drive.google.com/drive/folders/1a_J2tkJOuRyHYefgCnFiWAfRZfXcOJZy?usp=sharing)
+  - [BaiduNetdisk](https://pan.baidu.com/s/1U0M8b7POs7iOR4ufSXXw4g) (Extraction Code: hv29)
+- SUN RGB-D
+  - [GoogleDrive](https://drive.google.com/drive/folders/1vhGggucf7pJihfKahfJlL4lFZp2DEHdT?usp=sharing)
+  - [BaiduNetdisk](https://pan.baidu.com/s/1I0rR6WcPTBuD9Bdw1K2eCQ) (Extraction Code: gnzu)
+
+| ScanNet V2     | AP_0.25    | AR_0.25 | AP_0.50    | AR_0.50 |
+| -------------- | ---------- | ------- | ---------- | ------- |
+| cabinet        | 0.4898     | 0.7634  | 0.2800     | 0.5349  |
+| bed            | 0.8849     | 0.9506  | 0.7915     | 0.8642  |
+| chair          | 0.9149     | 0.9357  | 0.8354     | 0.8604  |
+| sofa           | 0.9049     | 0.9794  | 0.8027     | 0.9278  |
+| table          | 0.6802     | 0.8486  | 0.6146     | 0.7600  |
+| door           | 0.5955     | 0.7430  | 0.3721     | 0.5418  |
+| window         | 0.4814     | 0.7092  | 0.2405     | 0.4078  |
+| bookshelf      | 0.5876     | 0.8701  | 0.5032     | 0.7532  |
+| picture        | 0.1716     | 0.3243  | 0.0687     | 0.1396  |
+| counter        | 0.6085     | 0.8846  | 0.3545     | 0.5385  |
+| desk           | 0.7538     | 0.9528  | 0.5481     | 0.7874  |
+| curtain        | 0.6275     | 0.7910  | 0.4126     | 0.5224  |
+| refrigerator   | 0.5467     | 0.9474  | 0.4882     | 0.8070  |
+| showercurtrain | 0.7349     | 0.9643  | 0.5189     | 0.6786  |
+| toilet         | 0.9896     | 1.0000  | 0.9227     | 0.9310  |
+| sink           | 0.5901     | 0.6735  | 0.3521     | 0.4490  |
+| bathtub        | 0.8605     | 0.9355  | 0.8565     | 0.9032  |
+| garbagebin     | 0.4726     | 0.7151  | 0.3169     | 0.5170  |
+| Overall        | **0.6608** | 0.8327  | **0.5155** | 0.6624  |
+
+| SUN RGB-D   | AP_0.25    | AR_0.25 | AP_0.50    | AR_0.50 |
+| ----------- | ---------- | ------- | ---------- | ------- |
+| bed         | 0.8633     | 0.9553  | 0.6544     | 0.7592  |
+| table       | 0.5136     | 0.8552  | 0.2981     | 0.5268  |
+| sofa        | 0.6754     | 0.8931  | 0.5830     | 0.7193  |
+| chair       | 0.7864     | 0.8723  | 0.6301     | 0.7137  |
+| toilet      | 0.8699     | 0.9793  | 0.7125     | 0.8345  |
+| desk        | 0.2929     | 0.8082  | 0.1134     | 0.4017  |
+| dresser     | 0.3237     | 0.7615  | 0.2058     | 0.4954  |
+| night_stand | 0.5933     | 0.8627  | 0.4490     | 0.6588  |
+| bookshelf   | 0.3394     | 0.7199  | 0.1574     | 0.3652  |
+| bathtub     | 0.7505     | 0.8776  | 0.5383     | 0.6531  |
+| Overall     | **0.6008** | 0.8585  | **0.4342** | 0.6128  |
+
+**Note**: Due to the detection results are unstable and fluctuate within 1~2 mAP points, the results here are slightly different from those in the paper.
+
+## Training
+
+For ScanNet V2, please run:
+
+```sh
+CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/brnet/brnet_8x1_scannet-3d-18class.py --seed 42
+```
+
+For SUN RGB-D, please run:
+
+```shell
+CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/brnet/brnet_8x1_sunrgbd-3d-10class.py --seed 42
+```
+
+## Demo
+
+To test a 3D detector on point cloud data, please refer to [Single modality demo](https://mmdetection3d.readthedocs.io/en/latest/0_demo.html) and [Point cloud demo](https://mmdetection3d.readthedocs.io/en/latest/getting_started.html#demo) in MMDetection3D docs.
+
+Here, we provide a demo on SUN RGB-D dataset.
+
+```shell
+CUDA_VISIBLE_DEVICES=0 python demo/pcd_demo.py sunrgbd_000094.bin demo/brnet_8x1_sunrgbd-3d-10class.py checkpoints/brnet_8x1_sunrgbd-3d-10class_trained.pth
+```
+
+## Acknowledgments
+
+Our code is heavily based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d). Thanks mmdetection3d Development Team for their awesome codebase.
