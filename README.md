@@ -10,7 +10,7 @@ This is a release of the code of our paper ***Back-tracing Representative Points
 
 [[arxiv]]()
 
-In this repository, we reimplement BRNet based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) for easier usage.
+In this repository, we *reimplement* BRNet based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) for easier usage.
 
 ## Citation
 
