@@ -1,6 +1,6 @@
 # BRNet
 
-![fig_overview-c2](D:\OneDrive\Study\Graduate-master\软件工程综合实践\fig_overview-c2.jpg)
+![fig_overview-c2](resources/fig_overview-c2.jpg)
 
 ## Introduction
 
