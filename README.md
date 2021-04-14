@@ -8,7 +8,7 @@ This is a release of the code of our paper ***Back-tracing Representative Points
 
 **Authors**: Bowen Cheng, Lu Sheng\*, Shaoshuai Shi, Ming Yang, Dong Xu (\*corresponding author)
 
-[[arxiv]]()
+[[arxiv]](https://arxiv.org/abs/2104.06114)
 
 In this repository, we *reimplement* BRNet based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) for easier usage.
 
@@ -17,7 +17,12 @@ In this repository, we *reimplement* BRNet based on [mmdetection3d](https://gith
 If you find our work useful in your research, please consider citing:
 
 ```
-@article{}
+@article{2104.06114,
+title={Back-tracing Representative Points for Voting-based 3D Object Detection in Point Clouds},
+author={Bowen, Cheng and Lu, Sheng and Shaoshuai, Shi and Ming, Yang and Dong, Xu},
+journal={arXiv preprint arXiv:2104.06114},
+year={2021}
+}
 ```
 
 ## Installation
