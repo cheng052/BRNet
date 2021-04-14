@@ -19,7 +19,7 @@ If you find our work useful in your research, please consider citing:
 ```
 @article{2104.06114,
 title={Back-tracing Representative Points for Voting-based 3D Object Detection in Point Clouds},
-author={Bowen, Cheng and Lu, Sheng and Shaoshuai, Shi and Ming, Yang and Dong, Xu},
+author={Cheng, Bowen and Sheng, Lu and Shi, Shaoshuai and Yang, Ming and Xu, Dong},
 journal={arXiv preprint arXiv:2104.06114},
 year={2021}
 }
