@@ -17,11 +17,11 @@ In this repository, we *reimplement* BRNet based on [mmdetection3d](https://gith
 If you find our work useful in your research, please consider citing:
 
 ```
-@article{2104.06114,
-title={Back-tracing Representative Points for Voting-based 3D Object Detection in Point Clouds},
-author={Cheng, Bowen and Sheng, Lu and Shi, Shaoshuai and Yang, Ming and Xu, Dong},
-journal={arXiv preprint arXiv:2104.06114},
-year={2021}
+@inproceedings{cheng2021brnet,
+  title={Back-tracing Representative Points for Voting-based 3D Object Detection in Point Clouds},
+  author={Cheng, Bowen and Sheng, Lu and Shi, Shaoshuai and Yang, Ming and Xu, Dong},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year={2021}
 }
 ```
 
@@ -128,7 +128,7 @@ CUDA_VISIBLE_DEVICES=0 python demo/pcd_demo.py sunrgbd_000094.bin demo/brnet_8x1
 
 ### SUN RGB-D
 
-![](resources/fig_vis-results-sunrgbd.jpg)
+![](resources/fig_vis-results-sunrgbd-dpi375.jpg)
 
 ## Acknowledgments
 
