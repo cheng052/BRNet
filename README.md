@@ -120,6 +120,16 @@ Here, we provide a demo on SUN RGB-D dataset.
 CUDA_VISIBLE_DEVICES=0 python demo/pcd_demo.py sunrgbd_000094.bin demo/brnet_8x1_sunrgbd-3d-10class.py checkpoints/brnet_8x1_sunrgbd-3d-10class_trained.pth
 ```
 
+## Visualization results
+
+### ScanNet
+
+![](resources/fig_vis-results-scannet-dpi375.jpg)
+
+### SUN RGB-D
+
+![](resources/fig_vis-results-sunrgbd.jpg)
+
 ## Acknowledgments
 
 Our code is heavily based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d). Thanks mmdetection3d Development Team for their awesome codebase.
