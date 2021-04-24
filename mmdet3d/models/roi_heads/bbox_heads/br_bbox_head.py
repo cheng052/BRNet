@@ -72,17 +72,19 @@ class BRBboxHead(nn.Module):
         )
 
         # calculate direction refine loss
-        # dir_refine_loss = self.dir_res_loss(
-        #     bbox_preds['refined_angle'],
-        #     dir_targets,
-        #     weight=box_loss_weights
-        # )
-        dir_refine_loss = get_dir_refine_loss(
-            bbox_preds['refined_angle'],
-            dir_targets,
-            self.bbox_coder.num_dir_bins
-        )
-        dir_refine_loss = torch.sum(dir_refine_loss * box_loss_weights)
+        if not self.bbox_coder.with_rot:
+            dir_refine_loss = self.dir_res_loss(
+                bbox_preds['refined_angle'],
+                dir_targets,
+                weight=box_loss_weights
+            )
+        else:
+            dir_refine_loss = get_dir_refine_loss(
+                bbox_preds['refined_angle'],
+                dir_targets,
+                self.bbox_coder.num_dir_bins
+            )
+            dir_refine_loss = torch.sum(dir_refine_loss * box_loss_weights)
 
 
         # calculate semantic loss

@@ -58,10 +58,10 @@ class ClassAgnosticBBoxCoder(AnchorFreeBBoxCoder):
                     batch_size, num_proposal, 1)
             else:
                 raise NotImplementedError
+            dir_angle = dir_angle % (2 * np.pi)
         else:
             dir_angle = distance.new_zeros(batch_size, num_proposal, 1)
 
-        dir_angle = dir_angle % (2*np.pi)
 
         # decode bbox size
         bbox_size = distance[..., 0:3] + distance[..., 3:6]
@@ -152,8 +152,10 @@ class ClassAgnosticBBoxCoder(AnchorFreeBBoxCoder):
 
         results['refined_distance'] = distance + distance_delta  # (B, N, 6)
         refined_angle = angle + angle_delta
-        # refined_angle[refined_angle > np.pi] -= 2 * np.pi
-        refined_angle = refined_angle % (2*np.pi)
+        if self.with_rot:
+            refined_angle = refined_angle % (2*np.pi)
+        else:
+            refined_angle[refined_angle > np.pi] -= 2 * np.pi
         results['refined_angle'] = refined_angle  # (B, N)
 
         # 3. Merge from rpn proposals
