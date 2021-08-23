@@ -27,7 +27,7 @@ If you find our work useful in your research, please consider citing:
 
 ## Installation
 
-This repo is built based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) (V0.11.0), please follow the [getting_started.md](https://github.com/open-mmlab/mmdetection3d/blob/master/docs/getting_started.md) for installation.
+This repo is built based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) (V0.11.0), please follow the [getting_started.md](https://github.com/cheng052/BRNet/blob/master/docs/getting_started.md) for installation.
 
 The code is tested under the following environment:
 
@@ -41,11 +41,11 @@ The code is tested under the following environment:
 
 ### ScanNet
 
-Please follow the instruction [here](https://github.com/open-mmlab/mmdetection3d/tree/master/data/scannet) to prepare ScanNet Data.
+Please follow the instruction [here](https://github.com/cheng052/BRNet/tree/master/data/scannet) to prepare ScanNet Data.
 
 ### SUN RGB-D
 
-Please follow the instruction [here](https://github.com/open-mmlab/mmdetection3d/tree/master/data/sunrgbd) to prepare SUN RGB-D Data.
+Please follow the instruction [here](https://github.com/cheng052/BRNet/tree/master/data/sunrgbd) to prepare SUN RGB-D Data.
 
 ## Download Trained Models
 
