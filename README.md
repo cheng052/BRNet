@@ -37,6 +37,8 @@ The code is tested under the following environment:
 - CUDA 10.1
 - GCC 7.3
 
+And we provide the conda env config file [here](https://github.com/cheng052/BRNet/blob/master/open-mmlab_conda.yaml).
+
 ## Datasets
 
 ### ScanNet
